@@ -13,7 +13,7 @@ describe('template spec', () => {
   }
 
   it('CT01 Login - Sucess', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('/auth/login')
 
     cy.get(selectorsList.usernameField).type(userData.userSuccess.username);
     cy.get(selectorsList.passwordField).type(userData.userSuccess.password);
@@ -26,7 +26,7 @@ describe('template spec', () => {
 
 
   it('CT02 Login - Fail', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('/auth/login')
 
     cy.get(selectorsList.usernameField).type(userData.userFail.username);
     cy.get(selectorsList.passwordField).type(userData.userFail.password);
