@@ -1,25 +1,36 @@
 describe('template spec', () => {
+
+  //Criando um unico seletor para utilizar em varias partes do codigo
+  const selectorsList = {
+    usernameField: "[name='username']",
+    passwordField: "[name='password']",
+    loginButton: "[type='submit']",
+    sectionTitleTopBar: '.oxd-topbar-header-title',
+    wrongCredentialAlert: "[role='alert']"
+  }
+
+
   it('CT01 Login - Sucess', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
 
-    cy.get("[name='username']").type('Admin');
-    cy.get("[name='password']").type('admin123');
-    cy.get("[type='submit']").click();
+    cy.get(selectorsList.usernameField).type('Admin');
+    cy.get(selectorsList.passwordField).type('admin123');
+    cy.get(selectorsList.loginButton).click();
 
     cy.location('pathname').should('equal','/web/index.php/dashboard/index')
 
-    cy.get('.oxd-topbar-header-title').should('have.text','Dashboard');
+    cy.get(selectorsList.sectionTitleTopBar).should('have.text','Dashboard');
   })
 
 
   it('CT02 Login - Fail', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
 
-    cy.get("[name='username']").type('Admin');
-    cy.get("[name='password']").type('123');
-    cy.get("[type='submit']").click();
+    cy.get(selectorsList.usernameField).type('Admin');
+    cy.get(selectorsList.passwordField).type('123');
+    cy.get(selectorsList.loginButton).click();
 
-    cy.get("[role='alert']");
+    cy.get(selectorsList.wrongCredentialAlert);
 
   })
 })
