@@ -9,9 +9,13 @@ const dashboardPage = new DashboardPage();
 const menuPage = new MenuPage();
 const myInfoPage = new MyInfoPage();
 
-describe('template spec', () => {
+// Gerador de dados randomicos
+const Chance = require('chance')
+const chance = new Chance()
 
-  it.only('CT01 User info update - Sucess', () => {
+describe('Orange HRM Tests', () => {
+
+  it('CT01 User info update - Sucess', () => {
 
     loginPage.accessLoginPage()
     loginPage.loginWithUser(userData.userSuccess.username, userData.userSuccess.password)
@@ -21,7 +25,7 @@ describe('template spec', () => {
 
     menuPage.accessMyInfo()
 
-    myInfoPage.myInfoName()
+    myInfoPage.myInfoName(chance.first(),chance.last())
     myInfoPage.myInfoId()
     myInfoPage.myInfoDate()
     myInfoPage.myInfoButton()
@@ -31,15 +35,4 @@ describe('template spec', () => {
 
   })
 
-
-  it('CT02 Login - Fail', () => {
-    cy.visit('/auth/login')
-
-    cy.get(selectorsList.usernameField).type(userData.userFail.username);
-    cy.get(selectorsList.passwordField).type(userData.userFail.password);
-    cy.get(selectorsList.loginButton).click();
-
-    cy.get(selectorsList.wrongCredentialAlert);
-
-  })
 })

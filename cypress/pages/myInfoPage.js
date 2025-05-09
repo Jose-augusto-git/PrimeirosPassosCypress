@@ -23,9 +23,9 @@ class myInfoPage{
         return selectors
     }
 
-    myInfoName(){
-        cy.get(this.selectorsList().firstNameField).clear().type('Ana')
-        cy.get(this.selectorsList().lastNameField).clear().type('Nunes')
+    myInfoName(firstName,lastName){
+        cy.get(this.selectorsList().firstNameField).clear().type(firstName)
+        cy.get(this.selectorsList().lastNameField).clear().type(lastName)
        
     }
 
