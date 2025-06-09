@@ -31,7 +31,7 @@ class myInfoPage{
 
     myInfoId(){
         cy.get(this.selectorsList().genericField).eq(3).clear().type('TesteFunci')
-        cy.get(this.selectorsList().genericField).eq(4).clear().type('TesteOutros')
+        cy.get(this.selectorsList().genericField).eq(4).clear().type('TesteO')
         cy.get(this.selectorsList().genericField).eq(5).clear().type('Drivers License Number')
 
     }
