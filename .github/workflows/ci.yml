@@ -3,22 +3,23 @@ name: CI
 on: [push]
 jobs:
     build-test:
-        runs-on:  ubuntu-20.04
+        runs-on:  ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v3
 
-            - name: Cypress Test 
+            - name: Run Cypress Tests 
               uses: cypress-io/github-action@v5
               with:
-                start: 'npm run dev'
+                start: 'npm start'
                 build: 'npm run build'
-            - uses: action/upload-artifact@v3
+            - name: Upload Cypress Artifacts
+              uses: action/upload-artifact@v3
               if: always()
               with:
                 name: Cypress Result
                 path: | 
                   cypress/screenshots
                   cypress/videos
-                  cypress/results
+                # This option ensures the workflow does not fail if no files are found in the specified paths.
                 if-no-files-found: ignore
